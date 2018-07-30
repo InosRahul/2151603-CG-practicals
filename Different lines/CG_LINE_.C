@@ -1,0 +1,91 @@
+#include <graphics.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <conio.h>
+void main()
+{
+   /* request auto detection */
+   int gdriver = DETECT, gmode, errorcode;
+   int x1,y1,color,i,n,x2,y2,x3,y3,menu;
+
+   printf("Enter the values of x1 and x2 :");
+   scanf("%d %d",&x1 ,&x2);
+
+   printf("\n 1. Dotted \n 2. Dashed \n 3. Dash-Dot \n 4. Dash-triple dot \n ");
+   scanf("%d",&n);
+
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "..\\bgi");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   /* an error occurred */
+   if (errorcode != grOk)
+   {
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+      printf("Press any key to halt:");
+      getch();
+      exit(1);
+   }
+
+   //x1 = getmaxx()/2;
+   //y1 = getmaxy()/2;
+
+
+
+
+   x3 = x2-x1;
+   y3 = y2-y1;
+
+   for(i=1;i<=x3;i++){
+
+	x1++;
+
+	if(n==4){
+	putpixel(x1,0,15);
+	if((i/4)%2==0)
+	{
+		x1++;
+
+		putpixel(x1,0,15);
+		x1++;
+
+		}
+
+	 }
+
+	if(n==3){
+	putpixel(x1,0,15);
+	if(i%10==0)
+	{
+		x1=x1+2;
+
+		putpixel(x1,0,15);
+		x1++;
+
+		}
+
+
+   }
+   if(n==2){
+   putpixel(x1,0,15);
+	if(i%4==0)
+	x1++;
+
+   }
+
+   if(n==1){
+	if(i%2==0){
+		putpixel(x1,0,15);
+		}
+
+	}
+
+   }
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
